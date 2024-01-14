@@ -33,7 +33,8 @@ function_listfilesofselectedsnapshot () {
 }
 
 function_repeair () {
-        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
+        #repairs the index if something is corrupted
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file repair index
 }
 
 function_findfile () {
