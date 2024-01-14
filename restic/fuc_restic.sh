@@ -25,11 +25,11 @@ funcktion_check () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file check --read-data
 }
 
-function_listfilesinmostrecentsnapshot () {
+function_listfilesofselectedsnapshot () {
         function_snapshots
         # full health check 
         read -p "Enter Snapshot ID: " ID
-        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID 
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
 }
 
 PS3='Choose a Task: '
@@ -49,7 +49,7 @@ do
                 funcktion_check
                 ;;
         list_files)
-                function_listfilesinmostrecentsnapshot
+                function_listfilesofselectedsnapshot
                 ;;        
         Quit)
                 echo "Bye!"
