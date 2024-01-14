@@ -32,8 +32,6 @@ function_listfilesofselectedsnapshot () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
 }
 
-
-
 function_findfile () {
         read -p "enter a filename (case sensitive): " file
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file find $file  
@@ -43,11 +41,9 @@ function_stats () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
 }
 
-
 function_recoverdata () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file mount /mnt/truenasshare/restic-recovery
 }
-
 
 echo "======= Resic Menu ======="
 PS3='Choose a Task: '
