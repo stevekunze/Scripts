@@ -47,7 +47,7 @@ function_stats () {
 }
 
 PS3='Choose a Task: '
-select task in backup snapshots quick_check full_check repair list_files find_file repo_stats; 
+select task in backup snapshots quick_check full_check repair list_files find_files repo_stats; 
 do 
     case $task in 
         backup) 
