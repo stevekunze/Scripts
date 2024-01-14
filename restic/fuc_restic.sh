@@ -45,7 +45,7 @@ function_stats () {
 
 
 function_recoverdata () {
-        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file mount /mnt/truenasshare/restic-recovery
 }
 
 
