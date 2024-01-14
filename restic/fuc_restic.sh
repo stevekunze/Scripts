@@ -45,7 +45,7 @@ function_findfile () {
 function_stats () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
 }
-
+echo "======= Resic Menu ======="
 PS3='Choose a Task: '
 select task in backup snapshots quick_check full_check repair list_files find_files repo_stats; 
 do 
