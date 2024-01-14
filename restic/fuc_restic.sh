@@ -34,7 +34,7 @@ function_listfilesofselectedsnapshot () {
 
 function_repeair () {
         #repairs the index if something is corrupted
-        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file repair index
+        restic sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file repair index
 }
 
 function_findfile () {
@@ -45,9 +45,16 @@ function_findfile () {
 function_stats () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
 }
+
+
+function_recoverdata () {
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
+}
+
+
 echo "======= Resic Menu ======="
 PS3='Choose a Task: '
-select task in backup snapshots quick_check full_check repair list_files find_files repo_stats; 
+select task in backup snapshots quick_check full_check repair list_files find_files recover_data repo_stats; 
 do 
     case $task in 
         backup) 
@@ -70,6 +77,9 @@ do
                 ;;
         find_files)
                 function_findfile
+                ;;
+        recover_data)
+                function_recoverdata
                 ;;
         repo_stats)
                 function_stats
