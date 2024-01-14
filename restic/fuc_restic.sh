@@ -32,10 +32,7 @@ function_listfilesofselectedsnapshot () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
 }
 
-function_repeair () {
-        #repairs the index if something is corrupted
-        restic sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file repair index
-}
+
 
 function_findfile () {
         read -p "enter a filename (case sensitive): " file
@@ -54,7 +51,7 @@ function_recoverdata () {
 
 echo "======= Resic Menu ======="
 PS3='Choose a Task: '
-select task in backup snapshots quick_check full_check repair list_files find_files recover_data repo_stats; 
+select task in backup snapshots quick_check full_check list_files find_files recover_data repo_stats; 
 do 
     case $task in 
         backup) 
@@ -68,9 +65,6 @@ do
                 ;;
         full_check) 
                 funcktion_check
-                ;;
-        repair) 
-                function_repeair
                 ;;
         list_files)
                 function_listfilesofselectedsnapshot
