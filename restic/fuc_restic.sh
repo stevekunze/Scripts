@@ -4,7 +4,7 @@
 # Discription: Restic Menue based on freequently used commands
 # Script_Name: fuc_restic (fuc = frequently used commands)
 
-
+# defining functions 
 function_snapshots () { 
         #List snapshot    
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file snapshots     
@@ -27,13 +27,26 @@ funcktion_check () {
 
 function_listfilesofselectedsnapshot () {
         function_snapshots
-        # full health check 
-        read -p "Enter Snapshot ID: " ID
+        # type snapsot id and list all file from selected snaphots. Pipe into less to scroll through the list 
+        read -p "enter a snapshot ID: " ID
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
 }
 
+function_repeair () {
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
+}
+
+function_findfile () {
+        read -p "enter a filename (case sensitive): " file
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file find $file  
+}
+
+function_stats () {
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file stats --mode "raw-data" 
+}
+
 PS3='Choose a Task: '
-select task in backup snapshots quick_check full_check list_files; 
+select task in backup snapshots quick_check full_check repair list_files find_file repo_stats; 
 do 
     case $task in 
         backup) 
@@ -48,9 +61,18 @@ do
         full_check) 
                 funcktion_check
                 ;;
+        repair) 
+                function_repeair
+                ;;
         list_files)
                 function_listfilesofselectedsnapshot
-                ;;        
+                ;;
+        find_files)
+                function_findfile
+                ;;
+        repo_stats)
+                function_stats
+        ;;
         Quit)
                 echo "Bye!"
                 break 
