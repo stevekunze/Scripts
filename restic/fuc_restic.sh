@@ -27,7 +27,7 @@ funcktion_check () {
 
 function_listfilesofselectedsnapshot () {
         function_snapshots
-        # type snapsot id and list all file from selected snaphots. Pipe into less to scroll through the list  
+        # type snapsot id and list all file from selected snaphots. Pipe into less to scroll through the list 
         read -p "enter a snapshot ID: " ID
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
 }
@@ -45,9 +45,17 @@ function_recoverdata () {
         restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file mount /mnt/truenasshare/restic-recovery
 }
 
+function_prune () {
+	restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file forget \
+	--keep-daily 14 \
+	--keep-weekly 4 \
+	--keep-monthly 6 \
+	--keep-yearly 1 \
+	--prune
+}
 echo "======= Resic Menu ======="
 PS3='Choose a Task: '
-select task in backup snapshots quick_check full_check list_files find_files recover_data repo_stats; 
+select task in backup snapshots quick_check full_check list_files find_files recover_data repo_stats prune;
 do 
     case $task in 
         backup) 
@@ -73,6 +81,9 @@ do
                 ;;
         repo_stats)
                 function_stats
+		;;
+	prune)
+		function_prune
         ;;
         Quit)
                 echo "Bye!"
