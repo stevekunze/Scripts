@@ -27,9 +27,9 @@ funcktion_check () {
 
 function_listfilesofselectedsnapshot () {
         function_snapshots
-        # type snapsot id and list all file from selected snaphots. Pipe into less to scroll through the list 
+        # type snapsot id and list all file from selected snaphots. Pipe into fzf through the list 
         read -p "enter a snapshot ID: " ID
-        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | less 
+        restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/.restic-hetzner-file ls $ID | fzf
 }
 
 function_findfile () {
