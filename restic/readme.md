@@ -1,1 +1,10 @@
 Note that the "hsb" is needs to be defined in the .ssh/config file.
+
+> [!CAUTION]
+> You have to exclude the "/" at the start when specifing the path and username with .ssh/config file.
+> If you do so, you will encounter the following error:
+> Fatal: unable to open config file: Lstat: file does not exist Is there a repository at the following location?
+> example with .ssh/config file:
+> restic -r sftp:connectionname_in.ssh/config_file:restic-repo --password-file path/to/password/file backup /path/to/data/
+> Example without .ssh/config
+> restic -r sftp://user1234-sub1@example.your-storagebox.de:/restic-repo --verbose --password-file path/to/password/file backup /path/to/data/
