@@ -53,7 +53,7 @@ function_prune () {
 	--keep-yearly 1 \
 	--prune
 }
-echo "======= Retsic Menu ======="
+echo "======= restic menu ======="
 PS3='Choose a Task: '
 select task in backup snapshots quick_check full_check list_files find_files recover_data repo_stats prune;
 do 
