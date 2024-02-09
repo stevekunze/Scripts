@@ -1,7 +1,7 @@
 # get all installed Software from the registry
 Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 
-# get all installed Software from all Domain-Computer
+# get all installed Software from all Domain-Computers
 $computer = Get-ADComputer -Filter 'enabled -eq "true"' | Select-Object -ExpandProperty Name
 $result = New-Object System.Collections.ArrayList
 foreach ($c in $computer) {
