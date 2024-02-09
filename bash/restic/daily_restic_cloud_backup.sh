@@ -12,7 +12,7 @@ echo '----------------' >> rlog.txt
 echo >> rlog.txt
 #short health check and append result in rlog.txt | if you want to run more in depth check append option --read-data
 restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/restic/.restic-hetzner-file check >> rlog.txt
-#save output of rlog.txt in cariable called "result"
+#save output of rlog.txt in variable called "result"
 result="$(cat rlog.txt)"
 # Send to gotify
 curl "https://gotify.famkunze.eu/message?token=GOTIFYAPITOKEN" -F "title=Restic Cloud backup finished" -F "message=$result" -F "priority=1"
