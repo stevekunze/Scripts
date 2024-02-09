@@ -1,4 +1,6 @@
-Note that the "hsb" is needs to be defined in the .ssh/config file.
+
+> [!Note]
+> Note that the "hsb" is needs to be defined in the .ssh/config file.
 
 > [!CAUTION]
 > You have to exclude the "/" at the start when specifing the path and username with .ssh/config file.
