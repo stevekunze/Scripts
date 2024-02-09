@@ -16,4 +16,3 @@ restic -r sftp:hsb:Restic-Backup-Nextcloud --password-file /home/admin/restic/.r
 result="$(cat rlog.txt)"
 # Send to gotify
 curl "https://gotify.famkunze.eu/message?token=GOTIFYAPITOKEN" -F "title=Restic Cloud backup finished" -F "message=$result" -F "priority=1"
-
