@@ -14,4 +14,4 @@ read -p "enter your ssh-username: " sshuser
 #enter ip of remote server 
 read -p "enter the ip of your remote server: " remote_ip
 # copy created publickey to /home/$USER/.ssh/
-ssh-copy-id -i /home/$USER/.ssh/ed25519_$name.key $sshuser@$remote_ip
+ssh-copy-id -i /home/$USER/.ssh/ed25519_$keyname.pub $sshuser@$remote_ip
