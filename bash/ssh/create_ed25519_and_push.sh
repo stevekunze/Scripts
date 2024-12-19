@@ -6,7 +6,7 @@
 
 # create a ssh key with ed25519
 read -p "enter your desired filenamesufix: " keyname
-ssh-keygen -t ed25519 -f ~/.ssh/ed25519_$keyname.key
+ssh-keygen -t ed25519 -f ~/.ssh/ed25519_$keyname
 #show  created files
 ls -lah /home/$USER/.ssh | grep $keyname
 #enter ssh user
@@ -14,4 +14,4 @@ read -p "enter your ssh-username: " sshuser
 #enter ip of remote server 
 read -p "enter the ip of your remote server: " remote_ip
 # copy created publickey to /home/$USER/.ssh/
-ssh-copy-id -i /home/$USER/.ssh/ed25519_$name.key $sshuser@$remote_ip
+ssh-copy-id -i /home/$USER/.ssh/ed25519_$keyname.pub $sshuser@$remote_ip
